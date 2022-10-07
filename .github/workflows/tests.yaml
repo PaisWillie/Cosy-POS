@@ -1,0 +1,17 @@
+name: test-my-app
+on: [push, workflow_dispatch]
+jobs:
+  drive:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.3.4'
+        channel: 'stable'
+    - name: Install packages
+      run: flutter pub get
+    - name: Linter
+      run: flutter analyze
+    - name: Test
+      run: flutter test
