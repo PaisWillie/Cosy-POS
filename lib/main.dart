@@ -1,4 +1,4 @@
-import 'package:cosy_pos/screens/POS.dart';
+import 'package:cosy_pos/screens/pos.dart';
 import 'package:flutter/material.dart';
 
 void main() {
