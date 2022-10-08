@@ -1,6 +1,5 @@
 import 'package:cosy_pos/widgets/navbar/nav_item.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttericon/maki_icons.dart';
 
 class POS extends StatelessWidget {
   const POS({super.key});
