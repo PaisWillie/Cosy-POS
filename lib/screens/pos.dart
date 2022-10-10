@@ -7,9 +7,9 @@ class POS extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xFF111315),
-      child: Row(
+    return Scaffold(
+      backgroundColor: const Color(0xFF111315),
+      body: Row(
         children: [
           _Navbar(),
         ],
@@ -43,6 +43,7 @@ class _Navbar extends StatelessWidget {
       color: const Color.fromARGB(0, 0, 0, 0),
       padding: EdgeInsets.symmetric(horizontal: padding),
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
