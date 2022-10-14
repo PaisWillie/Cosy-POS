@@ -7,6 +7,8 @@ class User extends StatelessWidget {
 
   final double _avatarSize = 30.0;
 
+  // TODO: Fix button width to fit to text instead of stretching
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -33,37 +35,39 @@ class User extends StatelessWidget {
           bottom: 5.0,
           right: 15.0,
         ),
-        child: Row(children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 5.0),
-            child: Container(
-              width: _avatarSize,
-              height: _avatarSize,
-              decoration: BoxDecoration(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(100),
-              ),
-              child: Center(
-                child: Text(
-                  name[0],
-                  style: const TextStyle(
-                    fontSize: 14.0,
-                    fontFamily: 'Roboto',
-                    color: Colors.white,
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 5.0),
+              child: Container(
+                width: _avatarSize,
+                height: _avatarSize,
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Center(
+                  child: Text(
+                    name[0],
+                    style: const TextStyle(
+                      fontSize: 14.0,
+                      fontFamily: 'Roboto',
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          Text(
-            name,
-            style: const TextStyle(
-              fontSize: 12.0,
-              fontFamily: 'Roboto',
-              color: Colors.white,
-            ),
-          )
-        ]),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 12.0,
+                fontFamily: 'Roboto',
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

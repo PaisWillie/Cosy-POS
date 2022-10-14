@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   fluttericon: ^2.0.0
   device_preview: ^1.1.0
+  dotted_line: ^3.1.0
 
 dev_dependencies:
   flutter_test:

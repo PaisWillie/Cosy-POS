@@ -1,3 +1,4 @@
+import 'package:cosy_pos/screens/menu.dart';
 import 'package:cosy_pos/widgets/navbar/nav_item.dart';
 import 'package:cosy_pos/widgets/navbar/user.dart';
 import 'package:flutter/material.dart';
@@ -9,10 +10,21 @@ class POS extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF111315),
-      body: Row(
-        children: [
-          _Navbar(),
-        ],
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: _Navbar(),
+            ),
+            const Expanded(
+              flex: 4,
+              child: Menu(),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -35,7 +47,6 @@ class _Navbar extends StatelessWidget {
 
   final double padding = 25.0;
   final double buttonPadding = 15.0;
-  final double headerFooterHeight = 100.0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +57,7 @@ class _Navbar extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: headerFooterHeight,
+          Expanded(
             child: Align(
               alignment: Alignment.centerLeft,
               child: Padding(
@@ -75,31 +85,35 @@ class _Navbar extends StatelessWidget {
           ),
           // List of navigation items
           Expanded(
+            flex: 6,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: _navbarItems.entries
-                      .map((entry) => NavItem(
-                            entry: entry,
-                            buttonPadding: buttonPadding,
+                      .map((entry) => Align(
+                            alignment: Alignment.centerLeft,
+                            child: NavItem(
+                              entry: entry,
+                              buttonPadding: buttonPadding,
+                            ),
                           ))
                       .expand((item) => [item, const SizedBox(height: 5)])
                       .toList(),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _users
-                      .map((user) => User(name: user))
-                      .expand((item) => [item, const SizedBox(height: 5)])
-                      .toList(),
-                ),
+                // TODO: Fix renderflex overflow
+                // Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: _users
+                //       .map((user) => User(name: user))
+                //       .expand((item) => [item, const SizedBox(height: 5)])
+                //       .toList(),
+                // ),
               ],
             ),
           ),
-          SizedBox(
-            height: headerFooterHeight,
+          Expanded(
             child: Align(
               alignment: Alignment.centerLeft,
               child: Padding(
