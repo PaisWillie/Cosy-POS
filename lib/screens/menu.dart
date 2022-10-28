@@ -1,3 +1,4 @@
+
 import 'package:cosy_pos/widgets/menu/checkout_payment_method.dart';
 import 'package:cosy_pos/widgets/menu/menu_category.dart';
 import 'package:cosy_pos/widgets/menu/order_summary_item.dart';
@@ -156,7 +157,11 @@ class _Checkout extends StatelessWidget {
                 SizedBox(
                   height: _padding,
                 ),
-                _Total(),
+                _Total(
+                  subtotal: 171.5,
+                  tax: 17.15,
+                  total: 188.65,
+                ),
               ],
             ),
           ),
@@ -275,10 +280,22 @@ class _OrderSummary extends StatelessWidget {
 }
 
 class _Total extends StatelessWidget {
+  final double subtotal;
+  final double tax;
+  final double total;
+
+  _Total({
+    required this.subtotal,
+    required this.tax,
+    required this.total,
+  });
+
   final Map<String, IconData> _paymentMethods = {
     'Cash': Icons.attach_money,
     'Debit/Credit': Icons.credit_card,
   };
+
+  final double _padding = 10.0;
 
   @override
   Widget build(BuildContext context) {
@@ -301,24 +318,62 @@ class _Total extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Subtotal"),
-                      Text("\$"),
+                    children: [
+                      const Text(
+                        "Subtotal",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "\$${subtotal.toStringAsFixed(2)}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
+                  ),
+                  SizedBox(
+                    height: _padding,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Tax 13%"),
-                      Text("\$"),
+                    children: [
+                      const Text(
+                        "Tax 13%",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "\$${tax.toStringAsFixed(2)}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ],
                   ),
-                  const DottedLine(),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: _padding),
+                    child: const DottedLine(),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("Total"),
-                      Text("\$"),
+                    children: [
+                      const Text(
+                        "Total",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                      Text(
+                        "\$${total.toStringAsFixed(2)}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -327,7 +382,12 @@ class _Total extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Payment Method"),
+                  Text(
+                    "Payment Method",
+                    style: TextStyle(
+                      color: Colors.grey[500],
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
